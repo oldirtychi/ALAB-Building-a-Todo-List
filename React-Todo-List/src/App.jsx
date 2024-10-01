@@ -1,4 +1,4 @@
-import {useReducer} from 'react';
+import {useReducer, useState} from 'react';
 
 const initialState = [];
 
@@ -20,15 +20,25 @@ function reducer(state, action) {
 
 const Todos = () => {
     const [todos, dispatch] = useReducer(reducer, initialState);
+    const [task, setTask] = useState('');
+
+    const handleAddTask = () => {
+        if(task.trim()) {
+            dispatch({ type: 'Add_Task', payload: task});
+            setTask('');
+        }
+    };
 
     return(
         <div style = {{ textAlign: "center"}}>
          <h1>My Todo List ({todos.length})</h1>
         Add New Task:
-         <input type="text" 
-         onBlur={(e) => dispatch(
-            {type: 'Add_Task', payload: e.target.value}
-            )} /> 
+         <input 
+            type="text"
+            value={task} 
+            onChange={(e) => setTask(e.target.value)}
+        /> 
+        <button onClick={handleAddTask}>Add</button>
 
            {todos.map(todo => <li key={todo.id}>{todo.name}
             <span>
