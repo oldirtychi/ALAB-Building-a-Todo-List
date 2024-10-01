@@ -29,6 +29,12 @@ const Todos = () => {
         }
     };
 
+    const handleKeyPress = (e) => {
+        if(e.key === 'Enter') {
+            handleAddTask();
+        }
+    };
+
     return(
         <div style = {{ textAlign: "center"}}>
          <h1>My Todo List ({todos.length})</h1>
@@ -37,6 +43,7 @@ const Todos = () => {
             type="text"
             value={task} 
             onChange={(e) => setTask(e.target.value)}
+            onKeyUp={handleKeyPress}
         /> 
         <button onClick={handleAddTask}>Add</button>
 
