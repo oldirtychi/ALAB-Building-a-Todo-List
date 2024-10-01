@@ -1,6 +1,10 @@
 import {useReducer, useState} from 'react';
 
-const initialState = [];
+const initialState = [
+    { id: 1, name: "delectus aut autem", completed: false },
+    { id: 2, name: "quis ut nam facilis et officia qui", completed: false },
+    { id: 3, name: "fugiat veniam minus", completed: false }
+];
 
 function reducer(state, action) {
     switch(action.type){
