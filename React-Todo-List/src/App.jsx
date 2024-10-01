@@ -5,12 +5,13 @@ const initialState = [];
 function reducer(state, action) {
     switch(action.type){
         case 'Add_Task': return [
-            ...state,
+            
             {
                 id:state.length +1,
                 name: action.payload,
                 completed: false
-            }
+            },
+            ...state,
         ];
         case 'Toggle_Complete':
             return state.map(task =>
@@ -53,7 +54,7 @@ const Todos = () => {
         /> 
         <button onClick={handleAddTask}>Add</button>
         
-        <ul>
+        <ul style={{ listStyleType: 'none', padding: 0 }}>
            {todos.map(todo => (
            <li key={todo.id}>
             <input
